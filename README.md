@@ -136,7 +136,10 @@ hanyoung/
 ├─ tailwind.config.js          # 색상 토큰(navy/brand) · 폰트
 ├─ postcss.config.js
 ├─ vercel.json                 # Vercel 배포 설정(root base + SPA rewrite)
+├─ index.html                  # OG/트위터 메타태그·파비콘 링크 포함
 ├─ public/
+│  ├─ og-image.png             # 카카오톡 공유 이미지(1200×630)
+│  ├─ favicon.svg / favicon-32.png / favicon-512.png / apple-touch-icon.png
 │  └─ logo_basic.jpg           # 한영대학교 로고
 └─ src/
    ├─ main.jsx                 # React 진입
