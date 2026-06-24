@@ -39,7 +39,7 @@ export default function SummaryCards({ project, phases, milestones, risks }) {
   const topRisk = risks.find((r) => r.level === '높음')
 
   return (
-    <section className="mx-auto -mt-8 max-w-7xl px-4 sm:px-6">
+    <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-6 sm:mt-8">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5">
         <Card
           accent="navy"
