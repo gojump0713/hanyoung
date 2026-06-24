@@ -54,20 +54,21 @@ export default function GanttChart({ weeks, tasks, currentIndex }) {
         <div className="min-w-[760px]">
           {/* ===== 헤더 (sticky top) ===== */}
           <div className="gantt-grid sticky top-0 z-30">
-            {/* 좌측 고정 헤더 3컬럼 */}
-            <div className="sticky left-0 z-40 flex items-center border-b border-r border-slate-200 bg-navy-700 px-3 py-2.5 text-xs font-semibold text-white">
+            {/* 좌측 고정 헤더 3컬럼 (명시적 컬럼 배치로 모바일 정렬 보장) */}
+            <div className="sticky left-0 z-40 flex items-center border-b border-r border-slate-200 bg-navy-700 px-3 py-2.5 text-xs font-semibold text-white" style={{ gridColumn: 1, gridRow: 1 }}>
               세부 활동
             </div>
-            <div className="z-40 hidden items-center border-b border-r border-slate-200 bg-navy-700 px-3 py-2.5 text-xs font-semibold text-white md:sticky md:left-[200px] md:flex">
+            <div className="z-40 hidden items-center border-b border-r border-slate-200 bg-navy-700 px-3 py-2.5 text-xs font-semibold text-white md:sticky md:left-[200px] md:flex" style={{ gridColumn: 2, gridRow: 1 }}>
               산출물
             </div>
-            <div className="z-40 hidden items-center justify-center border-b border-r border-slate-200 bg-navy-700 px-2 py-2.5 text-xs font-semibold text-white md:sticky md:left-[330px] md:flex">
+            <div className="z-40 hidden items-center justify-center border-b border-r border-slate-200 bg-navy-700 px-2 py-2.5 text-xs font-semibold text-white md:sticky md:left-[330px] md:flex" style={{ gridColumn: 3, gridRow: 1 }}>
               담당
             </div>
-            {/* 주차 헤더 */}
+            {/* 주차 헤더 — 본문 막대와 동일하게 col 4~11에 명시 배치 */}
             {weeks.map((w, i) => (
               <div
                 key={w.id}
+                style={{ gridColumn: i + 4, gridRow: 1 }}
                 className={`flex flex-col items-center justify-center border-b border-l border-slate-200 py-2 text-center ${
                   i === currentIndex ? 'bg-brand-blue text-white' : 'bg-navy-700 text-white'
                 }`}
@@ -126,7 +127,7 @@ export default function GanttChart({ weeks, tasks, currentIndex }) {
                     } hover:bg-slate-50/70`}
                   >
                     {/* 활동명 (고정) */}
-                    <div className={`sticky left-0 z-20 flex flex-col justify-center gap-1 border-r border-slate-100 px-3 py-2.5 ${stickyBg}`}>
+                    <div style={{ gridColumn: 1, gridRow: 1 }} className={`sticky left-0 z-20 flex flex-col justify-center gap-1 border-r border-slate-100 px-3 py-2.5 ${stickyBg}`}>
                       <div className="flex items-start gap-1.5">
                         {t.milestone && (
                           <span className="mt-0.5 shrink-0 text-sm leading-none text-amber-500">◆</span>
@@ -143,12 +144,12 @@ export default function GanttChart({ weeks, tasks, currentIndex }) {
                     </div>
 
                     {/* 산출물 (고정, 데스크탑) */}
-                    <div className={`z-20 hidden items-center border-r border-slate-100 px-3 py-2.5 text-[11px] leading-snug text-slate-500 md:sticky md:left-[200px] md:flex ${stickyBg}`}>
+                    <div style={{ gridColumn: 2, gridRow: 1 }} className={`z-20 hidden items-center border-r border-slate-100 px-3 py-2.5 text-[11px] leading-snug text-slate-500 md:sticky md:left-[200px] md:flex ${stickyBg}`}>
                       {t.deliverable}
                     </div>
 
                     {/* 담당 (고정, 데스크탑) */}
-                    <div className={`z-20 hidden items-center justify-center border-r border-slate-100 px-2 py-2.5 md:sticky md:left-[330px] md:flex ${stickyBg}`}>
+                    <div style={{ gridColumn: 3, gridRow: 1 }} className={`z-20 hidden items-center justify-center border-r border-slate-100 px-2 py-2.5 md:sticky md:left-[330px] md:flex ${stickyBg}`}>
                       <OwnerBadge owner={t.owner} />
                     </div>
 
